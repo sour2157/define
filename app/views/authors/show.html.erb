@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  &nbsp;&nbsp;<%= @author.name %>
+</p>
+
+<p>
+  <strong>Cover:</strong>
+  &nbsp;&nbsp;<%= image_tag @author.photo.url(:medium) %>
+</p>
+
+<%= link_to 'Edit', edit_author_path(@author) %> |
+<%= link_to 'Back', authors_path %>
+
+<h2>Comments</h2>
+<%= render "comments/comments" %>
+<%= render "comments/form" %>
