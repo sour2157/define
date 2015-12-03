@@ -1,0 +1,12 @@
+<% if @book.errors.count == 0 %>
+
+	$('#new_book').remove();
+	$('#new_book_link').show();
+	$('#books').append('<%= j render("book", :book => @book) %>');
+
+<% else %>
+
+	$('.new_book').remove();
+	$('#new_book_link').after('<%= j render("form") %>');
+
+<% end %>

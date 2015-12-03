@@ -16,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # Gemfile RABL(Ruby API Builder Language)
 gem 'rabl'
 gem 'responders'
+gem 'rabl-rails'
 #Use kaminari and will_paginate for the pagination 
 gem 'kaminari'
 gem 'will_paginate'

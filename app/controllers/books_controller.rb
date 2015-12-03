@@ -5,6 +5,11 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.page(params[:page]).per(5)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @books }
+    end
   end
 
   # GET /books/1
@@ -14,18 +19,30 @@ class BooksController < ApplicationController
     @commentable = @book
     @comments = @commentable.comments
     @comment = Comment.new
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @book }
+    end
   end
 
   # GET /books/new
   def new
     @book = Book.new
     @author_ids = Author.all
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @product }
+      format.js
+    end
   end
 
   # GET /books/1/edit
   def edit
     @book = Book.find(params[:id])
-    
+    respond_to do |format|
+    format.html
+    format.js
+    end
   end
 
   # POST /books
@@ -36,10 +53,12 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.save
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
-        format.json { render :show, status: :created, location: @book}
+        format.json { render json: @book, status: :created, location: @book}
+        format.js
       else
         format.html { render :new }
         format.json { render json: @book.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -50,10 +69,12 @@ class BooksController < ApplicationController
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
-        format.json { render :show, status: :ok, location: @book }
+        format.json { head :no_content }
+        format.js
       else
-        format.html { render :edit }
+        format.html { render action: "edit" }
         format.json { render json: @book.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -61,10 +82,13 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
+    @book = Book.find(params[:id])
     @book.delete
+    
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to books_url }
       format.json { head :no_content }
+      format.js
     end
   end
 

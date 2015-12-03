@@ -3,6 +3,8 @@ collection @books
 
 attributes :id, :title
 
-child (:author_books) do 
-	attributes :author_id 
-end
+node :cover do |i|
+	i.original_url
+	end
+
+

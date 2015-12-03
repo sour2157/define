@@ -1,0 +1,7 @@
+<tr id="book_<%= book.id %>">
+        <td><%= book.title %></td>
+        <td><%= image_tag book.cover.url(:thumb) %></td>
+        <td><%= link_to 'Show', book %></td>
+        <td><%= link_to 'Edit', edit_book_path(book), :remote => true %></td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }, :remote => true %></td>
+</tr>
